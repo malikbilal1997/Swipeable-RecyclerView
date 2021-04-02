@@ -15,6 +15,7 @@ Android 5.0+ API 21+
 * Customizable texts, icons & backgrounds.
 * Customizable text size, text color.
 * One side/two sides swipe.
+* Round Corner Backgrounds
 * Really simple to use, implement swipe listener.
 * Set attributes using XML/Java.
 
@@ -66,6 +67,7 @@ Android 5.0+ API 21+
         app:rightBgColor="@color/blue"
         app:rightImage="@drawable/ic_check"
         app:rightText="Read"
+        app:cornerRadius="8dp"
         app:textColor="@android:color/white"
         app:textSize="20sp" />
     <!--no images/icons-->
@@ -140,7 +142,7 @@ allprojects {
 Add the dependency
 ```
 dependencies {
-        implementation 'com.github.tsuryo:Swipeable-RecyclerView:1.1'
+       	implementation 'com.github.malikbilal1997:Swipeable-RecyclerView:1.2.1'
 	implementation 'androidx.recyclerview:recyclerview:+'
 }
 ```
