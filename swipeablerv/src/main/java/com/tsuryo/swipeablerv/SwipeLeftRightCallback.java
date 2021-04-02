@@ -195,7 +195,7 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
                     }
 
                     bg = new GradientDrawable();
-                    bg.setCornerRadius(corners);
+                    bg.setCornerRadii(new float[]{0, 0, corners, corners, corners, corners, 0, 0});
                     bg.setColor(context.getResources()
                             .getColor(mSwipedView.getLeftBg()));
 
@@ -212,7 +212,7 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
 
 
                     bg = new GradientDrawable();
-                    bg.setCornerRadius(corners);
+                    bg.setCornerRadii(new float[]{corners, corners, 0, 0, 0, 0, corners, corners});
                     bg.setColor(context.getResources()
                             .getColor(mSwipedView.getRightBg()));
 
