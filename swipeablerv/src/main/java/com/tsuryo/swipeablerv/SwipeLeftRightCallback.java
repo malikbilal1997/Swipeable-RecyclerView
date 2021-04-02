@@ -3,8 +3,8 @@ package com.tsuryo.swipeablerv;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.DisplayMetrics;
 import android.view.View;
 
@@ -80,12 +80,15 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
             draw(c, context, toDraw);
     }
 
-    private void draw(@NonNull Canvas c, Context context, ChildToDraw toDraw) {
-        ColorDrawable bg = toDraw.getBg();
+    private void draw(@NonNull Canvas c, @NonNull Context context, @NonNull ChildToDraw toDraw) {
+
+        GradientDrawable bg = toDraw.getBg();
+
         Drawable icon = toDraw.getIcon();
         Paint paint = toDraw.getPaintText();
 
         bg.draw(c);
+
         if (icon != null) {
             icon.draw(c);
             c.drawText(toDraw.getText(), icon.getBounds().centerX(),
@@ -129,7 +132,7 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
         private int dX;
         private View v;
         private Context context;
-        private ColorDrawable bg;
+        private GradientDrawable bg;
         private Drawable icon;
         private Paint mPaintText;
         private String mText;
@@ -144,7 +147,7 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
             mSide = side;
         }
 
-        private ColorDrawable getBg() {
+        private GradientDrawable getBg() {
             return bg;
         }
 
@@ -178,6 +181,10 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
 
             int iconLeft;
             int iconRight;
+
+            float corners = convertDpToPixel(
+                    mSwipedView.getCornerRadius(), context);
+
             switch (mSide) {
                 case LEFT:
                     mText = mSwipedView.getLeftText();
@@ -186,8 +193,12 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
                         iconRight = v.getLeft() + iconMargin + icon.getIntrinsicWidth();
                         icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
                     }
-                    bg = new ColorDrawable(context.getResources()
+
+                    bg = new GradientDrawable();
+                    bg.setCornerRadius(corners);
+                    bg.setColor(context.getResources()
                             .getColor(mSwipedView.getLeftBg()));
+
                     bg.setBounds(v.getLeft(), v.getTop(), v.getLeft() +
                             dX, v.getBottom());
                     break;
@@ -198,8 +209,13 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
                         iconRight = v.getRight() - iconMargin;
                         icon.setBounds(iconLeft, iconTop, iconRight, iconBottom);
                     }
-                    bg = new ColorDrawable(context.getResources()
+
+
+                    bg = new GradientDrawable();
+                    bg.setCornerRadius(corners);
+                    bg.setColor(context.getResources()
                             .getColor(mSwipedView.getRightBg()));
+
                     bg.setBounds(v.getRight() + dX, v.getTop(),
                             v.getRight(), v.getBottom());
                     break;
@@ -214,7 +230,7 @@ public class SwipeLeftRightCallback extends ItemTouchHelper.SimpleCallback {
         }
     }
 
-    private float convertDpToPixel(float dp, Context context) {
+    private float convertDpToPixel(float dp, @NonNull Context context) {
         return dp * ((float) context.getResources().getDisplayMetrics().densityDpi /
                 DisplayMetrics.DENSITY_DEFAULT);
     }

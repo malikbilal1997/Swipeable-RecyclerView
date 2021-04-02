@@ -12,6 +12,7 @@ public class SwipedView {
     private String[] mTexts;
     private int mTextColor;
     private int mTextSize;
+    private int cornerRadius;
 
     SwipedView() {
     }
@@ -60,8 +61,16 @@ public class SwipedView {
         mIcons = icons;
     }
 
-    void setBackrounds(int[] backrounds) {
-        mBackgrounds = backrounds;
+    void setBackgrounds(int[] backgrounds) {
+        mBackgrounds = backgrounds;
+    }
+
+    int getCornerRadius() {
+        return cornerRadius;
+    }
+
+    void setCornerRadius(int cornerRadius) {
+        this.cornerRadius = cornerRadius;
     }
 
     void setTexts(String[] texts) {

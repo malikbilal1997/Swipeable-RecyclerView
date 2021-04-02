@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,13 +33,13 @@ public class SwipeableRecyclerView extends RecyclerView
     }
 
     public void setRightBg(int bg) {
-        mSwipedView.setBackrounds(new int[]{
+        mSwipedView.setBackgrounds(new int[]{
                 mSwipedView.getLeftBg(), bg
         });
     }
 
     public void setLeftBg(int bg) {
-        mSwipedView.setBackrounds(new int[]{
+        mSwipedView.setBackgrounds(new int[]{
                 bg, mSwipedView.getRightBg()
         });
     }
@@ -106,12 +105,16 @@ public class SwipeableRecyclerView extends RecyclerView
                 typedArray.getString(R.styleable.SwipeableRecyclerView_leftText),
                 typedArray.getString(R.styleable.SwipeableRecyclerView_rightText)
         });
-        mSwipedView.setBackrounds(new int[]{
+        mSwipedView.setBackgrounds(new int[]{
                 typedArray.getResourceId(
                         R.styleable.SwipeableRecyclerView_leftBgColor, R.color.white),
                 typedArray.getResourceId(
                         R.styleable.SwipeableRecyclerView_rightBgColor, R.color.white)
         });
+
+        mSwipedView.setCornerRadius((int) typedArray.getDimension(
+                R.styleable.SwipeableRecyclerView_cornerRadius, 0));
+
         mSwipedView.setIcons(new int[]{
                 typedArray.getResourceId(
                         R.styleable.SwipeableRecyclerView_leftImage, -1),
